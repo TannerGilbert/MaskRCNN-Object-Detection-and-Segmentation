@@ -113,7 +113,8 @@ if __name__ == '__main__':
     if args.save_path:
         width = int(cap.get(3))
         height = int(cap.get(4))
-        out = cv2.VideoWriter(args.save_path, cv2.VideoWriter_fourcc('M','J','P','G'), 5, (width, height))
+        fps = cap.get(cv2.CAP_PROP_FPS)
+        out = cv2.VideoWriter(args.save_path, cv2.VideoWriter_fourcc('M','J','P','G'), fps, (width, height))
     while cap.isOpened():
         ret, image = cap.read()
         results = model.detect([image], verbose=1)
